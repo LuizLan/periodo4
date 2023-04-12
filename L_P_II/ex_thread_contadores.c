@@ -67,7 +67,7 @@ int main(void) {
 	threads_active = 0;
 
 	pthread_join(thread1, (void*)&res_1);
-        pthread_join(thread2, (void*)&res_2);
+    pthread_join(thread2, (void*)&res_2);
 
 	printf("[m] threads finalizadas, valor de retorno: %d %d\n", res_1, res_2);
 	printf("[m] var_global = %d\n", var_global);

@@ -112,9 +112,9 @@ int main(int argc, char** argv) {
 		if (getpid() == pid_original) {
 			int retval = 0;
 			wait(&retval);
-				printf("[%d] saindo...\n", retval);
+			printf("[%d] saindo...\n", retval);
 			for (int i = 0; i < qtd_lebres; i++) {
-				kill(pids[i], 9);
+				kill(pids[i], SIGHUP);
 			}
 			//printf("[main] saindo...\n");
 			exit(0);
