@@ -46,16 +46,23 @@ def tela2():
 
     ######################## FUNCOES ###################
 
-    def inserir():
-        valor = int(caixa1.get())
-        posicao = int(caixa2.get())
-        if lista.insere(posicao, valor):
-            print("Inserido com sucesso")
+    def gerar_view():
+
+        listaview.delete("all")
+        
+        for posicao in range(1, lista.tamanho()+1):
+            valor = lista.elemento(posicao)
             x = 200 + posicao*50
             y = 240
             inserir = "" + str(valor) + " -> "
             listaview.create_text(x, y, text=inserir, font=("Arial", 12))
 
+    def inserir():
+        valor = int(caixa1.get())
+        posicao = int(caixa2.get())
+        if lista.insere(posicao, valor):
+            print("Inserido com sucesso")    
+            gerar_view()
         else:
             print("Erro ao inserir")
             messagebox.showerror("Erro", "Erro ao inserir")
@@ -67,6 +74,8 @@ def tela2():
         posicao = int(caixa2.get())
         if lista.remove(posicao) != -1:
             print("Removido com sucesso")
+
+            gerar_view()
         else:
             print("Erro ao remover")
             messagebox.showerror("Erro", "Erro ao remover, posição inválida")
@@ -126,7 +135,7 @@ def tela2():
     #############
 
     botao1 = tk.Button(root, text="inserir (informe val e pos)", command=inserir, width= 24)
-    botao2 = tk.Button(root, text="Remover (informe valor)", command= remover, width = 24)
+    botao2 = tk.Button(root, text="Remover (informe posicao)", command= remover, width = 24)
     botao3 = tk.Button(root, text="Busca Posição (informe valor)", command= busca_valor, width = 24)
     botao4 = tk.Button(root, text="Busca Valor (informe posicao)", command= busca_posicao, width = 24)
     
