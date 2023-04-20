@@ -1,7 +1,7 @@
 from tkinter import *
-from tkinter import ttk
 from LSE import LSE
 
+import tkinter.messagebox as messagebox
 import tkinter as tk
 
 
@@ -51,31 +51,48 @@ def tela2():
         posicao = int(caixa2.get())
         if lista.insere(posicao, valor):
             print("Inserido com sucesso")
+
         else:
             print("Erro ao inserir")
+            messagebox.showerror("Erro", "Erro ao inserir")
+            
+        caixa1.delete(0, tk.END)
+        caixa2.delete(0, tk.END)
 
     def remover():
-        valor = int(caixa1.get())
-        if lista.remove(valor):
+        posicao = int(caixa2.get())
+        if lista.remove(posicao):
             print("Removido com sucesso")
         else:
             print("Erro ao remover")
+            messagebox.showerror("Erro", "Erro ao remover posição inválida")
+            
+        caixa2.delete(0, tk.END)
     
     def busca_posicao():
         posicao = int(caixa2.get())
 
         if lista.elemento(posicao) != -1:
             print("Busca feita com sucesso, o valor é: ", lista.elemento(posicao))
+            messagebox.showinfo(message=("Busca feita com sucesso, a posição é: ", lista.elemento(posicao)))        
         else:
             print("Erro ao buscar")
+            messagebox.showerror("Erro", "Erro ao bucar posição")
+            
+        caixa2.delete(0, tk.END)
 
     def busca_valor():
         valor = int(caixa1.get())
 
         if lista.posicao(valor) != -1:
-            print("Busca feita com sucesso, o valor é: ", lista.posicao(valor))
+            print("Busca feita com sucesso, a posição é: ", lista.posicao(valor))
+            messagebox.showinfo(message=("Busca feita com sucesso, a posição é: ", lista.posicao(valor)))
+            
         else:
-            print("Erro ao buscar")
+            print("Erro ao buscar, valor nao esta na lista ou é inválido")
+            messagebox.showerror("Erro", "Erro ao bucar valor")
+            
+        caixa1.delete(0, tk.END)
 
     ######################## INTERFACE GRAFICA (GUI) ###################
     label.config(text="LSE")
@@ -97,14 +114,14 @@ def tela2():
 
     ## imagens ##
 
-    soma = PhotoImage(file="estrutura-dados\projeto\soma.png")
-    soma = soma.subsample(20, 20)
-    figura = Label(root, image=soma)
-    figura.image = soma
+    #soma = PhotoImage(file="estrutura-dados\projeto\soma.png")
+    #soma = soma.subsample(20, 20)
+    #figura = Label(root, image=soma)
+    #figura.image = soma
 
     #############
 
-    botao1 = tk.Button(root, image=soma, command=inserir, bd=0, highlightthickness=0)
+    botao1 = tk.Button(root, text= 'inserir', command=inserir, bd=0, highlightthickness=0)
     botao2 = tk.Button(root, text="Remover", command= remover, width = 12)
     botao3 = tk.Button(root, text="Busca Posição (informe valor)", command= busca_valor, width = 24)
     botao4 = tk.Button(root, text="Busca Valor (informe posicao)", command= busca_posicao, width = 24)
