@@ -61,11 +61,11 @@ def tela2():
 
     def remover():
         posicao = int(caixa2.get())
-        if lista.remove(posicao):
+        if lista.remove(posicao) != -1:
             print("Removido com sucesso")
         else:
             print("Erro ao remover")
-            messagebox.showerror("Erro", "Erro ao remover posição inválida")
+            messagebox.showerror("Erro", "Erro ao remover, posição inválida")
             
         caixa2.delete(0, tk.END)
     
