@@ -51,6 +51,10 @@ def tela2():
         posicao = int(caixa2.get())
         if lista.insere(posicao, valor):
             print("Inserido com sucesso")
+            x = 200 + posicao*50
+            y = 240
+            inserir = "" + str(valor) + " -> "
+            listaview.create_text(x, y, text=inserir, font=("Arial", 12))
 
         else:
             print("Erro ao inserir")
@@ -121,29 +125,32 @@ def tela2():
 
     #############
 
-    botao1 = tk.Button(root, text= 'inserir', command=inserir, bd=0, highlightthickness=0)
-    botao2 = tk.Button(root, text="Remover", command= remover, width = 12)
+    botao1 = tk.Button(root, text="inserir (informe val e pos)", command=inserir, width= 24)
+    botao2 = tk.Button(root, text="Remover (informe valor)", command= remover, width = 24)
     botao3 = tk.Button(root, text="Busca Posição (informe valor)", command= busca_valor, width = 24)
     botao4 = tk.Button(root, text="Busca Valor (informe posicao)", command= busca_posicao, width = 24)
     
     visualizacao = tk.Label(root, text= "Lista: ", font=("Arial", 12))
+    listaview = tk.Canvas(root, width= 1080, height= 480, bg= "white")
 
     ######################## POSICAO DOS COMPONENTES (LAYOUT) ###################
 
-    linha.place(x=0, y=340)
+    linha.place(x=0, y=240)
 
     caixa1.place(x=300, y=43)
     label_caixa1.place(x=300, y=20)
 
     caixa2.place(x=300, y=86)
-    label_caixa2.place(x=300, y=63)
+    label_caixa2.place(x=300, y=65)
 
     botao1.place(x=550, y=43)
     botao2.place(x=850, y=43)
     botao3.place(x=550, y=80)
     botao4.place(x=850, y=80)
 
-    visualizacao.place(x= 360, y=300)
+    visualizacao.place(x= 360, y=230)
+    listaview.place(x= 0, y= 250)
+    #listaview.pack('bottom')
 
 def tela3():
     label.config(text="LDE")
