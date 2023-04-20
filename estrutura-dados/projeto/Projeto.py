@@ -21,24 +21,24 @@ def tela1():
 
     # Criando as caixas de texto
     caixa1 = tk.Entry(root)
-    caixa1.place(x=150, y=43)
+    caixa1.place(x=300, y=43)
     label_caixa1 = tk.Label(root, text="Insira o valor:")
-    label_caixa1.place(x=150, y=20)
+    label_caixa1.place(x=300, y=20)
 
     caixa2 = tk.Entry(root)
-    caixa2.place(x=150, y=86)
+    caixa2.place(x=300, y=86)
     label_caixa2 = tk.Label(root, text="Insira a posição:")
-    label_caixa2.place(x=150, y=63)
+    label_caixa2.place(x=300, y=63)
 
     # Criando os botões
     botao1 = tk.Button(root, text="Inserir", command=lambda: print("Botão 1 clicado"), width = 12)
-    botao1.place(x=350, y=43)
+    botao1.place(x=550, y=43)
     botao2 = tk.Button(root, text="Remover", command=lambda: print("Botão 2 clicado"), width = 12)
-    botao2.place(x=450, y=43)
+    botao2.place(x=850, y=43)
     botao3 = tk.Button(root, text="Busca Posição", command=lambda: print("Botão 3 clicado"), width = 12)
-    botao3.place(x=350, y=80)
+    botao3.place(x=550, y=80)
     botao4 = tk.Button(root, text="Busca Valor", command=lambda: print("Botão 4 clicado"), width = 12)
-    botao4.place(x=450, y=80)
+    botao4.place(x=850, y=80)
 
 def tela2():
 
@@ -104,7 +104,7 @@ def tela2():
     botoes_iniciais()
     ######################## COMPONENTES (WIDGETS) ###################
     
-    linha = tk.Frame(root, width=720, height=1, bg='black')
+    linha = tk.Frame(root, width=1080, height=1, bg='black')
 
     caixa1 = tk.Entry(root)
     label_caixa1 = tk.Label(root, text="Insira o valor:")
@@ -130,18 +130,18 @@ def tela2():
 
     ######################## POSICAO DOS COMPONENTES (LAYOUT) ###################
 
-    linha.place(x=0, y=240)
+    linha.place(x=0, y=340)
 
-    caixa1.place(x=150, y=43)
-    label_caixa1.place(x=150, y=20)
+    caixa1.place(x=300, y=43)
+    label_caixa1.place(x=300, y=20)
 
-    caixa2.place(x=150, y=86)
-    label_caixa2.place(x=150, y=63)
+    caixa2.place(x=300, y=86)
+    label_caixa2.place(x=300, y=63)
 
-    botao1.place(x=350, y=43)
-    botao2.place(x=450, y=43)
-    botao3.place(x=350, y=80)
-    botao4.place(x=450, y=80)
+    botao1.place(x=550, y=43)
+    botao2.place(x=850, y=43)
+    botao3.place(x=550, y=80)
+    botao4.place(x=850, y=80)
 
     visualizacao.place(x= 360, y=300)
 
@@ -157,7 +157,7 @@ def tela3():
     botoes_iniciais()
 
 root = tk.Tk()
-root.geometry("720x480")
+root.geometry("1080x720")
 root.title("Projeto Estrutura de Dados")
 
 # Label para exibir a tela atual
