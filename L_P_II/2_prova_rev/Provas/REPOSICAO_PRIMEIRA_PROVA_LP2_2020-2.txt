@@ -1,0 +1,86 @@
+Reposição Primeira Prova – Linguagem de Programação II – UFPB – 2020.2
+Professor: Carlos Eduardo Batista
+
+*********** ATENÇÃO!!!!!! LEIA TODAS AS INSTRUÇÕES!!!!!! ***********
+
+- As respostas da prova devem ser enviadas por e-mail (para bidu @ ci.ufpb.br)
+ em um ÚNICO arquivo ZIP contendo os códigos solicitados (questões 1 e 3) e os
+ arquivos de texto (questões 2 e 4).
+
+- O título do e-mail e do arquivo ZIP deverá conter "[REPO-PROVA01-LPII-202]", 
+ seu nome e matrícula.
+
+- TODO CÓDIGO *DEVE* ser comentado com a explicação da lógica e demais 
+ informações solicitadas na questão.
+
+- Plágio será punido com a perda da pontuação das respostas por todos os
+ participantes.
+
+- O envio deverá ser feito até as 13h do dia 19/07/2021
+
+*********** ATENÇÃO!!!!!! LEIA TODAS AS INSTRUÇÕES!!!!!! ***********
+
+(Questão 1 - 4 pontos) Faça dois programas em C/C++ que vão servir para que 
+você compare o tempo de execução e consumo   de   memória   dos   algoritmos
+descritos   a   seguir   (use   alguma   função   de   medição   de   tempo*
+e ferramentas do seu S.O.** para medição de consumo de memória):
+
+a) criação de 64 threads; cada  thread  executa uma função que realiza 1000
+incrementos em uma  variávellocal e dorme por 1s;
+
+b) criação de 64 processos; cada processo executa uma função que realiza 1000
+incrementos em uma variável local e dorme por 1s;
+
+Faça uma clara distinção (em comentários no código) das diferenças principais
+de threads e processos, e na forma como devem ser usados. Escreva suas 
+impressões sobre o resultado do tempo de execução e consumo de memória, 
+justificando o motivo pelo qual uma das opções demanda menos recursos 
+(processamento e memória) para ser realizada. Inclua junto ao código um print
+de uma execução do programa e da ferramenta que exibe o consumo de memória e 
+processamento. Ao término do programa, nenhum processo deverá permanecer em 
+execução. 
+
+* Funções sugeridas para uso no processo de medição de tempo de execução são 
+listadas abaixo.
+
+Em C/C++: time(),  clock(), clock_gettime() (biblioteca time.h), gettimeofday()
+(biblioteca sys/time.h);Em C++: método chrono::high_resolution_clock 
+(biblioteca chrono).
+
+** top (Posix), Gerenciador de Tarefas/Task Manager, Everest (Windows) etc.
+
+
+-----------------------------------------------------
+
+(Questão 2 - 4 pontos) Faça um programa em C/C++ que declare uma variável 
+global do tipo int; faça o programa criar um processo que defina um valor 
+aleatório entre 20 e 80 para esta variável (o processo deve retornar o valor
+aleatório gerado para o a thread principal/main). O programa deverá criar 40 
+threads, que receberão um valor inteiro que representa um índice único (de 0
+a 39).
+
+Faça cada uma das threads realizar uma função que verifique se seu 
+identificador é divisível por 5. Caso o identificador seja divisível, a função 
+deve realizar um laço de repetição que faça 50 incrementos (+1) na variável 
+global; caso o identificador não seja divisível por 5, a função deve realizar 
+um laço que faça 10 decrementos (-1) na variável global. A cada iteração a 
+função deve exibir o identificador da thread e o novo valor da variável global,
+além de dormir um tempo aleatório entre 1s e 3s. 
+
+Após o término de todas as threads, exiba o valor final da variável global na 
+thread principal. Comente o código explicando o conceito de concorrência (e 
+suas diferentes formas de realização).Explique quais são os elementos do 
+Sistema Operacional e da arquitetura do computador envolvidos naexecução do 
+programa, como se relacionam com as funções usadas  e como se comportam para 
+que a lógicaimplementada seja concorrente. Fale também sobre consistência de 
+memória (à luz da execução do código implementado).
+
+-----------------------------------------------------
+
+(Questão 3 - 2 pontos) Utilize a execução e a implementação da questão anterior
+para discutir o ciclo de vida das threads. Faça a relação de cada invocação a 
+funções da API PThreads com a máquina de estados (descrevendo seus estados e 
+transições) que representa o ciclo de vida das threads. A resposta deverá ser 
+colocada em um arquivo de texto (extensão “.txt”) separado.
+
+-----------------------------------------------------

@@ -1,0 +1,28 @@
+(Questão Extra) Faça um programa em C/C++ que implemente uma solução
+para o problema do buffer compartilhado. Com um buffer compartilhado de 32 
+chars, o Programa deverá implementar duas funções:
+
+	- produtor() - gera um caractere alfanumérico aleatório e o deposita
+	no buffer; exibe o valor e a posição no buffer na tela;	dorme 150ms;
+	repete;
+
+	- consumidor() - captura um dos valores disponíveis no buffer 
+	compartilhado e armazena em um arquivo; dorme um tempo aleatório 
+	entre 30ms e 100ms; repete;
+
+A função produtor deverá ser realizada por uma thread; já a função consumidor
+deverá ser realizada por três (3) threads. Cada consumidor armazena
+as informações em um arquivo diferente. Ao final, a thread principal deve 
+consolidar todos os arquivos em um só (use barreiras).
+
+Use semáforos (biblioteca semaphore.h) para sincronizar o acesso ao buffer 
+compartilhado, de forma que todos os números gerados pelo produtor sejam
+consumidos uma vez, evitando qualquer problema ao ler ou escrever no buffer.
+Quando o buffer for consumido 4 vezes (ou seja, quando os produtores tiverem
+gerado 128 caracteres e estes forem consumidos) finalize o programa, salvando
+o conteúdo em arquivos. Comente o código explicando o uso dos semáforos.
+
+Referências para manipulação de arquivos em C:
+
+https://www.inf.pucrs.br/~pinho/LaproI/Arquivos/Arquivos.htm (português)
+http://www.csc.villanova.edu/~mdamian/C/c-files.htm (inglês)

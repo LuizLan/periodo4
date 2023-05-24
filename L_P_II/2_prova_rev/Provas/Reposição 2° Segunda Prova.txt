@@ -1,0 +1,62 @@
+Reposição Segunda Prova – Linguagem de Programação II – UFPB – 2020.2
+Professor: Carlos Eduardo Batista
+
+*********** ATENÇÃO!!!!!! LEIA TODAS AS INSTRUÇÕES!!!!!! ***********
+
+- As respostas da prova devem ser enviadas por e-mail (para bidu @ ci.ufpb.br)
+ em um ÚNICO arquivo ZIP contendo os códigos e esboços solicitados em arquivos 
+ separados dentro do ZIP. 
+
+- O TÍTULO do e-mail E do ARQUIVO ZIP DEVERÁ conter "[REPO-PROVA02-LPII-202]", 
+ seu nome e matrícula.
+
+- TODO CÓDIGO *DEVE* ser comentado com a explicação da lógica e demais 
+ informações solicitadas na questão. 
+
+- Cada questão deve ser respondida em um arquivo separado.
+
+- Plágio será punido com a perda da pontuação das respostas por todos os
+ participantes.
+
+- O envio deverá ser feito até as 13h do dia 19/07/2021
+
+*********** ATENÇÃO!!!!!! LEIA TODAS AS INSTRUÇÕES!!!!!! ***********
+
+(Questão 1 - 4 pontos) Faça um programa em C/C++ que controle o acesso de duas
+filas de threads a duas seções críticas diferentes. O programa deverá ter 10  
+threads, e duas variáveis globais (x e y) de tipo float, iniciadas com zero.  
+As threads executarão funções distintas de acordo com o valor do índice que 
+deverão receber no momento de sua criação: caso o índice seja par, a thread 
+executará uma função cuja seção crítica incrementao valor da variável x com 
+um valor aleatório entre 0.5 e 10, e depois deverá dormir 250ms; caso o índice
+seja ímpar, a thread executará uma função cuja seção crítica incrementa o valor
+da variável y com um valor aleatório entre 2.5  e 7.5, e depois deverá dormir 
+um tempo aleatório entre 100 e 300ms. 
+
+Use travas (funções da biblioteca Posix Threads - pthread.h ou da API de 
+threads STD C++11) para controlar o acesso às seções críticas, e garanta que 
+todas as threads incrementem as variáveis globais dentro de um ciclo de 
+iterações. O programa deverá ser finalizado quando a soma dos valores de x e y
+for  maior que 50. Comente o código explicando como foi feito o controle de 
+acesso às duas seções críticas usando as travas (locks).
+
+(Questão 2 - 2 pontos) Quais cuidados devem ser tomados, com relação ao 
+desenvolvimento de código concorrente, para manutenção das propriedades de 
+Safety e Liveness? Crie dois esqueletos de código em C/C++  que violem tais 
+propriedades (um para cada).
+
+(Questão 3 - 4 pontos) Faça um programa em C/C++ onde 5 threads (além da 
+principal) gerarão uma letra aleatória (caractere) cada. Estas letras deverão 
+ser combinadas em uma palavra (uma  string) na thread principal (função  main),
+que deverá exibi-la e também determinar se esta é um palíndromo ou não. 
+Palíndromos são frases ou palavras que podem ser lidas, indiferentemente, da 
+esquerda para a direita, conforme o sentido habitual da leitura em português,
+ou da direita para a esquerda, sem que haja mudança do seu significado 
+(exemplos de palíndromos com 5 letras: “AAAAA”, “ARARA”, “REGER”, “SALAS”). 
+O processo deve se repetir até que se encontrem 4 palíndromos. 
+
+Use barreiras (API Posix Threads - pthread.h ou a API de threads STD C++11) 
+para sincronizar as threads.
+
+A saída do seu programa deveser bem planejada, de forma a mostrar o que está 
+acontecendo em cada momento relevante. 
