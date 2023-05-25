@@ -29,26 +29,23 @@ includelib \masm32\lib\masm32.lib
     menuOptionInt dword ?; opcao do menu em dword
     
 .data
-    bufferSize equ 512; definicao do bufferSize
-    buffer db bufferSize dup(?); buffer para leitura do arquivo
-    outputBuffer db bufferSize dup(?); buffer para escrita no arquivo
-
     ; strings para visualizacao dos menus
-
-    menu1 db "1. Codificar", 0ah, 0h
-    menu2 db "2. Decodificar", 0ah, 0h
-    menu3 db "3. Sair", 0ah, 0h
+    menu1 db "___1_Codificar___", 0ah, 0h
+    menu2 db "___2_Decodificar___", 0ah, 0h
+    menu3 db "___3_Sair___", 0ah, 0h
 
     inputFilePrompt db "Digite o nome do arquivo de entrada: ", 0ah, 0h
     outputFilePrompt db "Digite o nome do arquivo de saida: ", 0ah, 0h
     keyInputPrompt db "Digite a chave de codificacao: ", 0ah, 0h
 
+    setaShow db ">> ", 0h
+
+    bufferSize equ 512; definicao do bufferSize
+    buffer db bufferSize dup(?); buffer para leitura do arquivo
+    outputBuffer db bufferSize dup(?); buffer para escrita no arquivo
+
 .code
 start:
-    invoke GetStdHandle, STD_INPUT_HANDLE; obtendo handle do prompt para input
-    mov inputHandle, eax
-    invoke GetStdHandle, STD_OUTPUT_HANDLE; obtendo handle do prompt para output
-    mov outputHandle, eax
     jmp menu_lace; indo para o menu
 
 codificar:
@@ -107,7 +104,7 @@ decrease_loop:
 invoke WriteFile, fileHandleOutput, addr outputBuffer, fileCount, addr fileCount, NULL; escreve a string alterada no arquivo de saida
 
 cmp fileCount, bufferSize; checa se o buffer estava cheio, se estiver volta para o inicio do loop de leitura
-je codificar
+je decodificar
 
 invoke CloseHandle, fileHandleInput
 invoke CloseHandle, fileHandleOutput
@@ -118,6 +115,7 @@ inputMenu: ;menu para leitura dos nomes dos arquivos e da chave escolhida pelo u
     ;le e trata o nome do arquivo de entrada dado pelo usuario
 
     invoke WriteConsoleA, outputHandle, addr inputFilePrompt, sizeof inputFilePrompt, addr console_count, NULL
+    invoke WriteConsoleA, outputHandle, addr setaShow, sizeof setaShow, addr console_count, NULL
     invoke ReadConsoleA, inputHandle, addr inputFile, sizeof inputFile, addr console_count, NULL
     
     mov esi, offset inputFile
@@ -136,6 +134,7 @@ tratamentoStringFileInput:
     ;le e trata o nome do arquivo de saida dado pelo usuario
 
     invoke WriteConsoleA, outputHandle, addr outputFilePrompt, sizeof outputFilePrompt, addr console_count, NULL
+    invoke WriteConsoleA, outputHandle, addr setaShow, sizeof setaShow, addr console_count, NULL
     invoke ReadConsoleA, inputHandle, addr outputFile, sizeof outputFile, addr console_count, NULL
     
     mov esi, offset outputFile
@@ -155,6 +154,7 @@ tratamentoStringFileOutput:
     ;le e trata a chave de codificacao dada pelo usuario
 
     invoke WriteConsoleA, outputHandle, addr keyInputPrompt, sizeof keyInputPrompt, addr console_count, NULL
+    invoke WriteConsoleA, outputHandle, addr setaShow, sizeof setaShow, addr console_count, NULL
     invoke ReadConsoleA, inputHandle, addr keyString, sizeof keyString, addr console_count, NULL
     mov esi, offset keyString
 tratamentoStringKey:
@@ -178,9 +178,18 @@ tratamentoStringKey:
     jmp end_program
 
 menu_lace: ; Menu de opcoes de criptografar, descritografar ou sair
+
+    invoke GetStdHandle, STD_INPUT_HANDLE; obtendo handle do prompt para input
+    mov inputHandle, eax
+    invoke GetStdHandle, STD_OUTPUT_HANDLE; obtendo handle do prompt para output
+    mov outputHandle, eax
+
+    add esp, 3 ; limpa a pilha, antes estava exibindo 3 chars do lixo de memoria
+
     invoke WriteConsoleA, outputHandle, addr menu1, sizeof menu1, addr console_count, NULL
     invoke WriteConsoleA, outputHandle, addr menu2, sizeof menu2, addr console_count, NULL ; exibem as opcoes
     invoke WriteConsoleA, outputHandle, addr menu3, sizeof menu3, addr console_count, NULL
+    invoke WriteConsoleA, outputHandle, addr setaShow, sizeof setaShow, addr console_count, NULL
     invoke ReadConsoleA, inputHandle, addr menuOptString, sizeof menuOptString, addr console_count, NULL ; le a escolha do usuario
     
     mov esi, offset menuOptString ; Armazenar apontador da string em esi
