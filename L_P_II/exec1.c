@@ -1,36 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include <ctype.h>
+#include <string.h>
 
-#define EXEC_PATH "/home/luiz/Cod/periodo4/L_P_II/loop"
-
-int main()
-{
-    int fork_return;
-
-    fork_return = fork();
-
-    if (fork_return < 0)
-    {
-        printf("Erro na criacao do processo filho\n");
+void removeVowels(char *str) {
+    int i, j;
+    for (i = 0, j = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        if (!isalpha(ch) || !strchr("AEIOUaeiou", ch)) {
+            str[j] = ch;
+            j++;
+        }
     }
-    else if (fork_return == 0)
-    {
-        // processo filho
-        char *args[] = {"loop", "1000", NULL};
-        printf("irei executar o programa loop\n");
-        int exec_return = execv(EXEC_PATH, args);
-        printf("[c]depois do exec: %d\n", exec_return);
-    }
-    else
-    {
-        // processo original
-        int ret_val;
-        waitpid(fork_return, &ret_val, 0);
-        printf("[o] clone finalizado\n");
-    }
+    str[j] = '\0';
+}
+
+int main() {
+    char str[100];
+
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove as vogais da string
+    removeVowels(str);
+
+    printf("String sem vogais: %s\n", str);
 
     return 0;
 }
